@@ -5,7 +5,7 @@ Neetcode 150 Roadmap learnings
 
 ## Arrays and Hashing
 
-### Top K Frequent Elements
+### [347. Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/description/)
 
 #### Bucket Sort
 
@@ -42,4 +42,34 @@ topKFrequent(nums, k) {
             }
         }
     }
+```
+
+### [128. Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/description/)
+
+#### Hash Set
+
+Uses set and to organize numbers and make look up quick
+
+```js
+longestConsecutive(nums) {
+
+    // create set with the numbers in nums
+    const numSet = new Set(nums);
+    // max streak saved
+    let longest = 0;
+
+    for (let num of numSet) {
+        // if a number smaller then the current one exsists, skip the number
+        if (!numSet.has(num - 1)) {
+            let length = 1;
+            // continue the streak if the next number exsists
+            while (numSet.has(num + length)) {
+                length++;
+            }
+            // check between the current streak and max and r
+            longest = Math.max(longest, length);
+        }
+    }
+    return longest;
+}
 ```
